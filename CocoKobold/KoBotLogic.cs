@@ -92,7 +92,6 @@ namespace CocoKobold
                 generationAttempt = 0,
 
                 generatedAudio = false,
-
             };
 
             // Generate soltion and image

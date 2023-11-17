@@ -10,11 +10,15 @@ namespace CocoKobold
     public class KoConfig
     {
         public string TelegramBotToken;
+
+        /*
+        Headless without database for now. 
         public string MySQL_Host; 
         public string MySQL_Port;
         public string MySQL_Username;
         public string MySQL_Password;
         public string MySQL_Database;
+        */
 
         public static KoConfig LoadFromFile(string filename = "koconfig.json")
         {
