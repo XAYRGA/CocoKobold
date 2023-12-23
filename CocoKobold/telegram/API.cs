@@ -198,6 +198,7 @@ namespace CocoKobold.Telegram
 
                     JObject tree = JObject.Parse(downloadedResponse);
 
+                    cnt.Dispose();
                     return new APIResponse
                     {
                         ok = (bool)tree["ok"],
@@ -233,6 +234,10 @@ namespace CocoKobold.Telegram
 
                     if (resultData == null || resultData.Content == null)
                         throw new Exception("No data received from endpoint");
+
+                    //dataX.Dispose();
+                    w.Dispose();
+
                     var downloadedResponse = await resultData.Content.ReadAsStringAsync();
                     JObject tree = JObject.Parse(downloadedResponse);
                     return new APIResponse

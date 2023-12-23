@@ -19,8 +19,8 @@ namespace CocoKobold.Telegram
     public class TGChatJoinRequest {
         public TGChat chat;
         public TGUser from;
-        public int user_chat_id;
-        public int date;
+        public long user_chat_id;
+        public long date;
         public string bio;
         public TGChatInviteLink invite_link;
     }

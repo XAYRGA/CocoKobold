@@ -44,6 +44,8 @@ namespace CocoKobold
             }
 
             BotLogic = new KoBotLogic(TelegramAPI);
+            kmsg.message(INFOTAG, "Starting application....");
+            BotLogic.ConsumeUpdates();
             while (true)            
                 BotLogic.Update();
         }

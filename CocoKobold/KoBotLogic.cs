@@ -230,9 +230,33 @@ namespace CocoKobold
                     Sessions.Remove(key);
             }
         }
+        public void ConsumeUpdates()
+        {
+            kmsg.message(INFOTAG, $"Consuming updates for startup....");
+            var updates = 100;
+            while (updates!=0)
+            {
+                var UpdateMessages = TelegramAPI.getUpdatesSimple(last_update).Result;
 
+                for (int i = 0; i < UpdateMessages.Length; i++)
+                {
+                    var update = UpdateMessages[i];
+                    if (update.update_id >= last_update)
+                        last_update = update.update_id + 1; // update the last ID so we don't process the same message twice, or 1000 times
+                    kmsg.message(INFOTAG, $"Disposing update {update.update_id:X5}");
+                }
+
+
+                if (UpdateMessages == null)
+                   break;
+
+                updates = UpdateMessages.Length;
+            }
+            kmsg.message(INFOTAG, $"Success!");
+        }
         public void Update()
         {
+            
             var UpdateMessages = TelegramAPI.getUpdatesSimple(last_update).Result;
 
             if (UpdateMessages == null)
