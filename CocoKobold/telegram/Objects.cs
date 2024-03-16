@@ -162,7 +162,7 @@ namespace CocoKobold.Telegram
         public bool is_topic_message;
         public bool is_automatic_forward;
         public TGMessage reply_to_message;
-        public bool via_bot;
+        public TGUser via_bot;
         public int edit_date;
         public bool has_protected_content;
         public string media_group_id;
