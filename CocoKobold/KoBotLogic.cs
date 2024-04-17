@@ -75,7 +75,7 @@ namespace CocoKobold
 
             if (getSession(user) != null)
             {
-                await sendLocalizedMessage(uchatID, user.language_code, "system/sessionizeLimit", chat.title);
+                await sendLocalizedMessage(uchatID, user.language_code, "system/sessionizerLimit", chat.title);
                 return;
             }
 
@@ -196,6 +196,7 @@ namespace CocoKobold
             {
                 await sendLocalizedMessage(chat_id, userLanguage, "verify/captchaSuccess", session.chat.title);
                 await TelegramAPI.acceptJoinRequestSimple(session.chat.id, message.from.id);
+                session.invalid = true;
             }
         }
 
