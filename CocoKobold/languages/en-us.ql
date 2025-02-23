@@ -1,6 +1,6 @@
 CODE	en
 AUTHOR	@XAYRGA
-VERSION	1.1
+VERSION	1.2
 *******************************************************
 
 
@@ -15,7 +15,7 @@ kobold/Introduction|Hello {0}, my name is Coco! I see this is the first time we'
 
 #Verify
 verify/Greeting|Hi {0}, Coco here! I've been asked to make sure that new members of {1} have done the following:
-verify/Captcha|Hi! Coco the Kobold here!\n\nI'm here to add you to {0}\n\nMessage me the text in the image below, you can send me the words "retry" to regenerate the captcha up to three times.\n\nIf you cannot complete a visual captcha (eg. visually impaired, etc) you can send me the text "audio", and i'll send you the solution to this captcha in a short sound message!\n\n
+verify/Captcha|Hi! Coco the Kobold here!\n\nI'm here to add you to {0}\n\nMessage me the text in the image below, you can send me the words "retry" to regenerate the captcha up to three times.\n\nIf you cannot complete a visual captcha you can send me the text "audio", and i'll send you the solution to this captcha in a short sound message!\n\n
 verify/responseRequestAudioMessage|OK! Just a second, I'll send you this CAPTCHA in audio form.
 verify/cantGenerateDuplicateAudioRequest|Hey! I already gave you an audio file! Are you trying something naughty?
 verify/cantGenerateNewCaptchaAfterAudio|Sorry, but if i've generated audio for you I can't generate you another image.

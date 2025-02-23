@@ -27,7 +27,7 @@ namespace CocoCaptchaGenerator
                 textColors =new List<SKColor>()
                 {
                     new SKColor(0xF90068FF),
-                    new SKColor(0x4CFF00FF),
+                    new SKColor(0xFCFF00FF),
                     new SKColor(0xFFC700FF),
                     new SKColor(0xFFF4F4FF)
                 },
@@ -35,6 +35,41 @@ namespace CocoCaptchaGenerator
                 {
                     new SKColor(0x9D00FF47),
                     new SKColor(0xFF7B0047)
+                }
+            },
+            
+            new CaptchaImagePallet
+            {
+                background = new SKColor(0x722D00FFu),
+                textColors =new List<SKColor>()
+                {
+                    new SKColor(0xFFFF90FFu),
+                    new SKColor(0xCB00FFFFu),
+                    new SKColor(0xFF00FFFFu),
+                    new SKColor(0x8CFFDCFFu)
+                },
+                artifactColors = new List<SKColor>()
+                {
+                    new SKColor(0x7FC9FFFFu),
+                    new SKColor(0xD67FFFFFu)
+                }
+            },
+            
+            
+            new CaptchaImagePallet
+            {
+                background = new SKColor(0x57007FFFu),
+                textColors =new List<SKColor>()
+                {
+                    new SKColor(0xCFFF00FFu),
+                    new SKColor(0xF6FF00FFu),
+                    new SKColor(0xFFBBFFFFu),
+                    new SKColor(0xFF00B2FFu)
+                },
+                artifactColors = new List<SKColor>()
+                {
+                    new SKColor(0xFF26FFFFu),
+                    new SKColor(0xFFFFE5FFu)
                 }
             }
         };
@@ -56,21 +91,25 @@ namespace CocoCaptchaGenerator
             text = text.ToUpper();
 
             var info = new SKBitmap(256, 128);
-            var imageMidpoint = 128f / 2f;
+            var imageYMidpoint = 128f / 2f;
 
-            CaptchaImagePallet pallet = pallets[0];
+            CaptchaImagePallet pallet = pallets[Rng.Next(0, pallets.Count())];
 
             using (var surface = new SKCanvas(info))
             {
                 surface.Clear(pallet.background);
                 var randomArtifactColor = pallet.artifactColors[Rng.Next(0, pallet.artifactColors.Count)];
 
-                var lastX = 15f;
+                var lastX = 30f;
 
                 for (int i = 0; i < text.Length; i++)
                 {
                     var character = text[i];
-                    var randomPalletColor = pallet.textColors[Rng.Next(0, pallet.textColors.Count)];
+                    var palletColorIndex = Rng.Next(0, pallet.textColors.Count);
+                    var randomPalletColor = pallet.textColors[palletColorIndex];
+#if DEBUG 
+                    Console.WriteLine($"Selecting color index {palletColorIndex}");
+#endif
 
 
                     using (var paint = new SKPaint())
@@ -81,9 +120,11 @@ namespace CocoCaptchaGenerator
                         paint.IsStroke = (Rng.NextSingle() > 0.5f);
                         paint.StrokeWidth = (Rng.NextSingle() * 2f) + 1f;
                         paint.TextAlign = SKTextAlign.Center;
-                        paint.TextSkewX = Rng.NextSingle() * 0.7f;
-                        lastX += paint.MeasureText(character.ToString());
-                        surface.DrawText(character.ToString(), lastX, imageMidpoint + ((Rng.NextSingle() - 0.5f) * (imageMidpoint / 3f)), paint);
+                        paint.TextSkewX = Rng.NextSingle() * 0.7f;                        
+                        lastX += paint.MeasureText(character.ToString()) * (i==0 ? 0 : 1); // Don't shift text left if we're 0th character
+                        
+
+                        surface.DrawText(character.ToString(), lastX, imageYMidpoint + ((Rng.NextSingle() - 0.5f) * (imageYMidpoint / 3f)), paint);
 
                     }
                 }
@@ -107,6 +148,8 @@ namespace CocoCaptchaGenerator
         {           
             var kk = File.OpenWrite(file);
             GenerateCaptchaImageStream(kk, text);
+            kk.Flush();
+            kk.Close();
         }
 
         public static byte[] GenerateCaptchaImageBytes(string text)

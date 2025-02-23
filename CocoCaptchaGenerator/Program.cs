@@ -10,7 +10,9 @@ namespace CocoCaptchaGenerator
             var challenge = "sergal";
             var waveData = CaptchaAudioGenerator.GenerateCaptchaAudio(challenge);
             File.WriteAllBytes("test.ogg",OggEncoder.WavToOgg(waveData));
-            CaptchaImageGenerator.GenerateCaptchaImageToFile($"{challenge}.jpg", challenge);
+          
+
+            CaptchaImageGenerator.GenerateCaptchaImageToFile($"{challenge}.jpg", CaptchaChallengeGenerator.GenerateChallenge(6));
         }
 
  

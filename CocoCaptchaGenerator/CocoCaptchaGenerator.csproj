@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   
   <PropertyGroup>
@@ -15,10 +15,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ImageArtifacts\creature.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ImageArtifacts\cow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="ImageArtifacts\elephant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageArtifacts\gato.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageArtifacts\incredible.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ImageArtifacts\patsucc.png">
@@ -138,10 +147,6 @@
     <None Update="VoiceBank\Z.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ImageArtifacts\" />
   </ItemGroup>
 
 </Project>

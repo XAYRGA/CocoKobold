@@ -62,7 +62,6 @@ namespace CocoKobold
 
         public KoBotLogic(Telegram.API API)
         {
-
             TelegramAPI = API;
         }
 
@@ -205,8 +204,6 @@ namespace CocoKobold
         {
             if (message.chat.type == "private")
             {
-
-                // need switch statement for commands!
                 KoboldChallengeSession session;
                 if ((session = getSession(message.from)) != null && !session.invalid)
                     handleSessionedMessage(session, message);
@@ -247,7 +244,6 @@ namespace CocoKobold
                     kmsg.message(INFOTAG, $"Disposing update {update.update_id:X5}");
                 }
 
-
                 if (UpdateMessages == null)
                    break;
 
@@ -257,7 +253,6 @@ namespace CocoKobold
         }
         public void Update()
         {
-            
             var UpdateMessages = TelegramAPI.getUpdatesSimple(last_update).Result;
 
             if (UpdateMessages == null)

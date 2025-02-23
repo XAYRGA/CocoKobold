@@ -22,15 +22,15 @@ namespace CocoCaptchaGenerator
             "KOBOLD",
             "DRAGON",
             "DEER", 
-            "PROOTS",
+            "PROTO",
             "XAYRGA",
-            "69420W",
+            "69420",
             "MERPIN",
             "LIZARD", 
             "MANEYS",
             "VORE",
             "POOTIS",
-            "BANANA"
+            "BANANA",
         };
 
         public static string GenerateChallenge(int length)
